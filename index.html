@@ -646,10 +646,20 @@
       <li><a href="#weekly-routine" class="tab-link" data-tab="weekly">Routine-Reihenfolge</a></li>
     </ul>
 
+    <div class="toc-heading">Patch 12.0.5</div>
+    <ul class="toc">
+      <li><a href="#patch-overview" class="tab-link" data-tab="patch">Übersicht & Relevanz</a></li>
+      <li><a href="#voidforge" class="tab-link" data-tab="patch">Voidforge (wichtig!)</a></li>
+      <li><a href="#void-assaults" class="tab-link" data-tab="patch">Void Assaults</a></li>
+      <li><a href="#ritual-sites" class="tab-link" data-tab="patch">Ritual Sites</a></li>
+      <li><a href="#field-accolades" class="tab-link" data-tab="patch">Field Accolades</a></li>
+      <li><a href="#patch-checklist" class="tab-link" data-tab="patch">Patch-Checkliste</a></li>
+      <li><a href="#other-changes" class="tab-link" data-tab="patch">Weitere Änderungen</a></li>
+    </ul>
+
     <div class="toc-heading">Reference</div>
     <ul class="toc">
       <li><a href="#pitfalls" class="tab-link" data-tab="reference">Pitfalls</a></li>
-      <li><a href="#patch-1205" class="tab-link" data-tab="reference">Patch 12.0.5</a></li>
       <li><a href="#quellen" class="tab-link" data-tab="reference">Quellen</a></li>
     </ul>
   </aside>
@@ -665,7 +675,7 @@
       <div class="hero-meta">
         <span class="pill gold">⚔️ Ziel: iLvl 277</span>
         <span class="pill">📅 Season 1 · Woche 5</span>
-        <span class="pill">🎮 Patch 12.0.0 → 12.0.5</span>
+        <span class="pill">🌑 Patch 12.0.5 · 21. April</span>
         <span class="pill">⏱️ 3–5 Wochen bei 4–6h/Woche</span>
       </div>
     </div>
@@ -676,6 +686,7 @@
       <button class="tab-btn" data-tab="phases">Phasen-Plan</button>
       <button class="tab-btn" data-tab="systems">Systeme</button>
       <button class="tab-btn" data-tab="weekly">Weekly Checkliste</button>
+      <button class="tab-btn" data-tab="patch">🌑 Patch 12.0.5</button>
       <button class="tab-btn" data-tab="reference">Reference & Pitfalls</button>
     </div>
 
@@ -1165,6 +1176,407 @@
     </div>
 
     <!-- ==========================================================
+         TAB: PATCH 12.0.5
+    ========================================================== -->
+    <div class="tab-content" id="tab-patch">
+
+      <h2 id="patch-overview">Patch 12.0.5 "Lingering Shadows"</h2>
+      <p><strong>Release: 21. April 2026</strong> (morgen/heute, je nach Lesezeitpunkt). Der erste große Content-Patch für Midnight. Kein Season-Reset, kein neuer Raid — aber <em>drei neue Gearing-Systeme</em>, die dein Weekly-Setup dauerhaft verändern und speziell für Alts einen massiven Gain bringen.</p>
+
+      <div class="callout">
+        <div class="callout-title">TL;DR für deinen Alt</div>
+        <p>Drei Dinge, die du sofort ab Woche 1 nach dem Patch einbauen musst:</p>
+        <ol>
+          <li><strong>Voidforge freischalten</strong> — Quest "Artifice of Aggression" bei <span class="npc">Decimus</span> in <span class="ingame">Voidstorm (Howling Ridge)</span>. Das Freischalten ist warband-wide — wenn dein Main es macht, profitiert der Alt auch.</li>
+          <li><strong>Nebulous Voidcores</strong> wöchentlich kaufen und <em>gezielt</em> auf deine schlechtesten Slots würfeln (endlich Targeted Loot in WoW).</li>
+          <li><strong>Field Accolades farmen</strong> aus Void Assaults + Ritual Sites → billiges Champion-Gear (75 Accolades) und Heroic-Gear (500 Accolades) als Catch-up-Shortcut bei <span class="ingame">The Bazaar, Silvermoon City, Level 2</span>.</li>
+        </ol>
+      </div>
+
+      <h3>Neue Systeme im Überblick</h3>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>System</th><th>Was es ist</th><th>Alt-Relevanz</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Voidforge</strong></td>
+            <td>Warband-wide Targeted-Loot-System via Nebulous Voidcores + Waffen/Trinket-Upgrades via Ascendant Voidcores</td>
+            <td class="highlight">🔥 Sehr hoch — Endlich gezieltes Loot-Farming</td>
+          </tr>
+          <tr>
+            <td><strong>Void Assaults</strong></td>
+            <td>Rotierende Open-World-Events in Eversong Woods / Zul'Aman</td>
+            <td class="highlight">🔥 Hoch — Field Accolades + Great Vault World Row</td>
+          </tr>
+          <tr>
+            <td><strong>Ritual Sites</strong></td>
+            <td>1–5-Spieler skalierbare Mini-Instanzen, 5 Tiers mit Challenge-Modifiers</td>
+            <td class="highlight">🔥 Hoch — Field Accolades + Great Vault Row</td>
+          </tr>
+          <tr>
+            <td><strong>Field Accolades Vendor</strong></td>
+            <td>Neue Währung → Champion (246) / Heroic (272) Gear direkt kaufbar</td>
+            <td class="highlight">🔥 Sehr hoch — RNG-freier Catch-up</td>
+          </tr>
+          <tr>
+            <td>Decor Duels</td>
+            <td>5v5 Hide-and-Seek in Silvermoon, Decor-Disguise</td>
+            <td>Kosmetik nur</td>
+          </tr>
+          <tr>
+            <td>Abyss Anglers</td>
+            <td>Unterwasser-Speerfisch-Event bei Zul'Aman</td>
+            <td>Kosmetik + Tauch-Gear</td>
+          </tr>
+          <tr>
+            <td>Lindormi's Glow</td>
+            <td>M+ Trash-Highlighting für Tanks (aktiviert durch Tank-Wahl)</td>
+            <td>Quality-of-Life für M+</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="voidforge">🔨 Voidforge — Targeted Loot für deinen Alt</h2>
+      <p>Das <strong>wichtigste neue System in 12.0.5</strong>. Endlich (erstmals seit Battle for Azeroth) kannst du gezielt auf ein Item würfeln statt nur RNG zu hoffen. Warband-wide konstruiert, aber per Charakter genutzt.</p>
+
+      <h3>Phase 1 — Voidforge bauen (one-time)</h3>
+      <p>Bei <span class="npc">Decimus</span> in <span class="ingame">Voidstorm, Howling Ridge</span> die Quest <em>"Building the Voidforge"</em> starten. Du brauchst <strong>6× Elementary Voidcores</strong>, die aus Season-1-Raid-Bossen, Bountiful Delves und M+-Dungeons droppen. Ist eine Warband-Quest — wenn dein Main sie macht, ist die Voidforge für den Alt direkt nutzbar.</p>
+
+      <h3>Phase 2 — Nebulous Voidcores (Bonus-Rolls)</h3>
+      <p>Nachdem die Forge steht, bekommst du <strong>2 Nebulous Voidcores pro Woche</strong>, wobei der Cap jede Woche um 2 steigt (Woche 1: 2, Woche 2: 4, Woche 3: 6...). <span class="npc">Decimus</span> verkauft sie gegen <em>Gold</em>, <span class="currency">Voidlight Marl</span> oder <span class="currency">Veteran Dawncrests</span> (freie Wahl).</p>
+
+      <p>Benutzung: Nach jedem Kill/Complete bekommst du einen Bonus-Loot-Prompt. Du kannst Voidcores ausgeben um einen <strong>zufälligen Gegenstand aus dieser Aktivität passend zu deiner Loot Spec</strong> zu erhalten. Sobald du ein Item so bekommen hast, ist es <em>aus diesem spezifischen Loot-Pool auf dieser Difficulty entfernt</em> — dein Pool schrumpft, deine Chancen steigen jede Woche.</p>
+
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Content</th><th>Cores pro Roll</th><th>iLvl-Output</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Raid Boss (LFR/Normal/Heroic/Mythic)</td><td>2 Cores</td><td>iLvl des Boss-Loots</td></tr>
+          <tr><td>Mythic+ Dungeon</td><td>1 Core</td><td class="highlight">Vault-iLvl (Myth 1/6 bei +10!)</td></tr>
+          <tr><td>Bountiful Delve</td><td>1 Core</td><td>Delve-Vault-iLvl</td></tr>
+          <tr><td>Nightmare Prey Hunt</td><td>1 Core</td><td>Nightmare-Vault-iLvl</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-title">💡 Der krasse M+ Trick</div>
+        <p>M+ Voidcore-Rewards nutzen <strong>Vault-iLvl</strong>, nicht End-of-Dungeon-iLvl. Konkret: Ein +10 Key gibt normalerweise Hero 3/6 (266) am Ende, aber via Voidcore bekommst du <strong>Myth 1/6 (272)</strong>. Das heißt: <em>Mit einem Voidcore auf einem +10-Key bekommst du Gear auf Vault-Niveau — ohne auf den Reset warten zu müssen.</em></p>
+      </div>
+
+      <div class="callout ok">
+        <div class="callout-title">🎯 Raid / M+ Difficulty sind separate Pools</div>
+        <p>Ein Trinket aus Normal-Crown-of-the-Cosmos per Voidcore zu bekommen, <em>entfernt es nicht</em> aus dem Heroic- oder Mythic-Pool. Jede Difficulty hat einen eigenen Pool. Gut: Du kannst gezielt mehrfach auf das gleiche Slot hochgradieren.</p>
+      </div>
+
+      <h3>Bonus-Quelle: Vaultkeeper Elysa</h3>
+      <p>Du kannst <strong>zusätzliche Nebulous Voidcores</strong> bei <span class="npc">Vaultkeeper Elysa</span> für <strong>6 Thalassian Tokens of Merit</strong> pro Core kaufen. Diese zählen <em>nicht</em> gegen den Weekly-Cap — reine Extra-Rolls. Wenn dein Vault nichts gibt und du Tokens stackst, ist das eine der besten Token-Ausgaben.</p>
+
+      <h3>Phase 3 — Ascendant Voidcores (iLvl 298 Endgame)</h3>
+      <p>Nachdem die Voidforge steht, kommt die Quest <em>"Ascendant Nilhammer"</em> (ebenfalls warband-wide). Sobald abgeschlossen, kannst du <span class="currency">Ascendant Voidcores</span> aus Raid/M+/Bountiful Delve/Nightmare Prey farmen. Ein Ascendant Voidcore upgradet eine <strong>fully upgradete Hero-, Myth- oder max-Quality Radiance-Crafted Waffe/Trinket auf iLvl ~298</strong>. Das ist deutlich über deinem 277er-Ziel — also <em>nicht Priorität Nummer 1 für den Alt</em>, aber ein guter Long-Term-Chase, besonders wenn du die Waffe eh craftest.</p>
+
+      <h2 id="void-assaults">⚔️ Void Assaults</h2>
+      <p>Neue Open-World-Events in <span class="ingame">Eversong Woods</span> und <span class="ingame">Zul'Aman</span>. Wöchentliche Rotation, zwei Event-Stufen:</p>
+
+      <h3>Void Strikes (kleine Events)</h3>
+      <p>Rotieren wöchentlich durch die beiden Zonen. Kleine Encounter, die du solo oder in kleiner Gruppe machst. Wenn einer abgeschlossen ist, startet der nächste in einem anderen Teil der Zone.</p>
+
+      <h3>Void Incursions (große Events)</h3>
+      <p>Sobald genug Void Strikes in einer Zone completed sind, triggert eine große Incursion — raid-artiger Encounter, der viele Spieler benötigt.</p>
+
+      <h3>Rewards</h3>
+      <ul>
+        <li><strong>Field Accolades</strong> als Haupt-Reward (Vendor-Währung für Gear)</li>
+        <li><strong>Voidlight Marl</strong> (zweite Währung für Kosmetik/Mounts)</li>
+        <li><strong>Great Vault World Content Row</strong> zählt mit</li>
+        <li>Tier-2 Void-Recolors als Kosmetik</li>
+      </ul>
+
+      <h2 id="ritual-sites">🔮 Ritual Sites</h2>
+      <p>Skalierbare <strong>1–5-Spieler-Instanzen</strong> in denen du Twilight's-Blade-Kultisten und Naga-Rituale stoppst. Zwei rotierende Sites: <span class="ingame">Daggerspine Ritual Site</span> und <span class="ingame">Broken Throne Ritual Site</span>.</p>
+
+      <h3>Challenge-Tier-System</h3>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tier</th><th>Challenges nötig</th><th>Schwierigkeit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tier 1</td><td>0</td><td>Solo entspannt</td></tr>
+          <tr><td>Tier 2</td><td>0</td><td>Solo machbar</td></tr>
+          <tr><td>Tier 3</td><td>1 Challenge wählen</td><td>Solo möglich, besser 2-3</td></tr>
+          <tr><td>Tier 4</td><td>2 Challenges wählen</td><td>Gruppe empfohlen</td></tr>
+          <tr><td>Tier 5</td><td>4 Challenges wählen</td><td>Vollgruppe</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Jeder Tier muss freigespielt werden bevor du den nächsten machen kannst. Je höher der Tier und je mehr Challenges, desto mehr Rewards.</p>
+
+      <h3>Rewards</h3>
+      <ul>
+        <li><strong>Field Accolades</strong> (Hauptwährung, skaliert mit Tier)</li>
+        <li><strong>Ritual Spoils</strong> (Caches mit Crests, Dawncrests, Coffer Key Shards, Gold, Mats)</li>
+        <li><strong>Dark Particles</strong> (spezifische Site-Währung, eintauschbar gegen Field Accolades — 100 Particles = 10 Accolades via <span class="item">Field Accolade Pouch</span>)</li>
+        <li><strong>Great Vault World Content Row</strong> — zählt neben Delves und Prey!</li>
+      </ul>
+
+      <div class="callout info">
+        <div class="callout-title">Ritual-Sites-Renown</div>
+        <p>Separate Renown-Progression. Renown 3 schaltet die meisten Housing-Decor-Items beim Vendor frei, Renown 7 für die exklusive <span class="item">Dark Obelisk</span>-Decor. Für Gear spielt Renown keine Rolle, aber für Completionisten relevant.</p>
+      </div>
+
+      <h2 id="field-accolades">🏅 Field Accolades — der Catch-up-Shortcut</h2>
+      <p>Die neue <strong>Open-World-Currency</strong>, die beide neuen Systeme vereint. Aus Void Assaults und Ritual Sites. Vendors stehen auf <strong>Level 2 von The Bazaar in Silvermoon City</strong>.</p>
+
+      <h3>Gear-Preise (aktuell)</h3>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Item-Quality</th><th>iLvl</th><th>Kosten</th><th>Alt-Wert</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Champion</strong></td><td>246–259</td><td>75 Field Accolades</td><td>Lückenfüller in Phase 1/2</td></tr>
+          <tr class="hero-row"><td><strong>Heroic</strong></td><td>259–272</td><td>500 Field Accolades</td><td class="highlight">Sehr relevanter Slot-Fill</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>Vendor-NPCs auf Level 2 von The Bazaar</h3>
+      <ul>
+        <li><span class="npc">Sergeant Vornin</span> — Mounts, Pets (hauptsächlich Voidlight Marl)</li>
+        <li><span class="npc">Tiram Dawnsetter</span> — Cosmetic Armor + Weapons (Accolades + Marl)</li>
+        <li><span class="npc">Rae'ana</span> — Housing Decor (Renown-Anforderungen)</li>
+        <li><span class="npc">Lady Darkglen</span>, <span class="npc">Ranger Captain Lilatha</span>, <span class="npc">Kul'amara the Fierce</span> — Quest-Turn-ins / neue Quests</li>
+      </ul>
+
+      <div class="callout ok">
+        <div class="callout-title">Wann lohnen sich Heroic-Items (500 Accolades)?</div>
+        <p>Heroic-Gear vom Vendor ist <strong>iLvl 259–272</strong>. Das entspricht Hero 1/6 bis 5/6. Nützlich, wenn du einen Slot hast, den du partout nicht aus M+/Raid gedropt bekommst. <em>Aber:</em> Wenn du bereits ein Hero-4/6-Piece in diesem Slot hast, das du via Discount auf 6/6 upgraden kannst, ist der Upgrade vom Main-Progress besser.</p>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-title">Dark-Particles-Conversion</div>
+        <p>Wenn du viele Ritual Sites läufst, sammelst du Dark Particles. Die kannst du via <span class="item">Field Accolade Pouch</span> in Field Accolades umwandeln: <strong>100 Particles = 10 Accolades</strong>. Rechnet sich, wenn du ohnehin viel Ritual Sites machst.</p>
+      </div>
+
+      <h2 id="patch-checklist">✅ Patch-Release-Day Checkliste</h2>
+      <p>Konkrete Reihenfolge für den Moment wenn Server nach dem Patch hochkommen. Speichert separat von der Weekly-Checkliste im Browser.</p>
+
+      <div class="checklist-header">
+        <div class="progress-ring"><span id="patch-check-count">0</span> / <span id="patch-check-total">0</span> erledigt</div>
+        <button class="reset-btn" onclick="resetPatchChecklist()">🔄 Reset</button>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">🎯 Sofort (Day 1 nach Patch)</div>
+
+        <label class="check-item patch-check" data-id="patch-decimus">
+          <input type="checkbox">
+          <div class="check-label"><strong>Decimus in Voidstorm (Howling Ridge) besuchen</strong> — Quest <em>"Artifice of Aggression"</em> starten</div>
+          <span class="check-priority top">10 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-main-voidforge">
+          <input type="checkbox">
+          <div class="check-label"><strong>Voidforge auf dem Main bauen</strong> (warband-wide!) — 6× Elementary Voidcores sammeln aus Raid/M+/Bountiful Delves</div>
+          <span class="check-priority top">2–3 Runs</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-first-voidcores">
+          <input type="checkbox">
+          <div class="check-label"><strong>Erste 2 Nebulous Voidcores</strong> bei Decimus kaufen (Gold / Veteran Dawncrests / Voidlight Marl)</div>
+          <span class="check-priority top">2 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-use-voidcore-worst-slot">
+          <input type="checkbox">
+          <div class="check-label"><strong>Voidcores auf schlechtestem Slot einsetzen</strong> — M+ +10 für Myth 1/6 (272) oder Raid Boss für Trinket/Waffe</div>
+          <span class="check-priority top">nach Run</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-bag-space">
+          <input type="checkbox">
+          <div class="check-label"><strong>Bag-Space freimachen</strong> — neue Currencies: Voidlight Marl, Field Accolades, Dark Particles, Ritual Spoils, Angler Pearls, Voidcores</div>
+          <span class="check-priority high">5 Min</span>
+        </label>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">🌍 Void Assaults & Ritual Sites freispielen</div>
+
+        <label class="check-item patch-check" data-id="patch-void-strikes">
+          <input type="checkbox">
+          <div class="check-label"><strong>Aktive Void Strikes</strong> in Eversong/Zul'Aman abschließen</div>
+          <span class="check-priority high">~20 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-void-incursion">
+          <input type="checkbox">
+          <div class="check-label"><strong>Void Incursion triggern</strong> wenn möglich (braucht genug Void Strikes in der Zone)</div>
+          <span class="check-priority high">~20 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-ritual-t1">
+          <input type="checkbox">
+          <div class="check-label"><strong>Ritual Site Tier 1</strong> abschließen — unlockt die nächsten Tiers</div>
+          <span class="check-priority high">~15 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-ritual-t2">
+          <input type="checkbox">
+          <div class="check-label"><strong>Ritual Site Tier 2</strong> abschließen</div>
+          <span class="check-priority high">~15 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-ritual-t3">
+          <input type="checkbox">
+          <div class="check-label"><strong>Ritual Site Tier 3</strong> (1 Challenge) — höheres Tier stacked Modifiers</div>
+          <span class="check-priority high">~20 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-ritual-higher">
+          <input type="checkbox">
+          <div class="check-label"><strong>Ritual Site Tier 4 oder 5</strong> mit Gruppe für bessere Rewards</div>
+          <span class="check-priority">~30 Min</span>
+        </label>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">🏅 Field Accolades ausgeben</div>
+
+        <label class="check-item patch-check" data-id="patch-vendor-visit">
+          <input type="checkbox">
+          <div class="check-label"><strong>The Bazaar Level 2 besuchen</strong> — Vendors checken: Sergeant Vornin, Tiram Dawnsetter, Rae'ana</div>
+          <span class="check-priority high">10 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-champion-gear">
+          <input type="checkbox">
+          <div class="check-label"><strong>Champion-Gear (75 Accolades) für schlechteste Slots</strong> kaufen, solange Alt noch unter iLvl ~255 ist</div>
+          <span class="check-priority high">5 Min</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-heroic-gear">
+          <input type="checkbox">
+          <div class="check-label"><strong>Heroic-Gear (500 Accolades) planen</strong> für einen hartnäckigen Slot, den du nicht aus M+/Raid bekommst</div>
+          <span class="check-priority">langfristig</span>
+        </label>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">🔨 Ascendant Voidcore-Questline (Long-Term)</div>
+
+        <label class="check-item patch-check" data-id="patch-ascendant-quest">
+          <input type="checkbox">
+          <div class="check-label"><strong>Ascendant Nilhammer Questline starten</strong> (warband-wide, one-time) — sobald Voidforge steht</div>
+          <span class="check-priority">Woche 2+</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-ascendant-farm">
+          <input type="checkbox">
+          <div class="check-label"><strong>Ascendant Voidcores farmen</strong> — sobald dein Alt eine fully-upgradete Hero/Myth Waffe oder Trinket hat (iLvl 298 Upgrade!)</div>
+          <span class="check-priority">Phase 4+</span>
+        </label>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">🎮 Optional (Spaß-Content, keine Alt-Relevanz)</div>
+
+        <label class="check-item patch-check" data-id="patch-decor-duels">
+          <input type="checkbox">
+          <div class="check-label">Decor Duels einmal testen — 5v5 Hide-and-Seek in Silvermoon (Group Finder → PvP Tab)</div>
+          <span class="check-priority">Spaß</span>
+        </label>
+
+        <label class="check-item patch-check" data-id="patch-abyss-anglers">
+          <input type="checkbox">
+          <div class="check-label">Abyss Anglers bei Depthdiver Jeju (Zul'Aman Küste) — entspannter Fishing-Event mit Cosmetic-Rewards</div>
+          <span class="check-priority">Spaß</span>
+        </label>
+      </div>
+
+      <h2>🎯 12.0.5-Strategie speziell für deinen Alt</h2>
+
+      <div class="callout">
+        <div class="callout-title">Was sich für den Phasen-Plan ändert</div>
+        <p>Alle im Phasen-Plan beschriebenen Aktivitäten (Phase 1–4) bleiben gültig. 12.0.5 <em>ergänzt</em> den Plan um drei zusätzliche Weekly-Aktivitäten. Hier die Empfehlung, wo die neuen Systeme in den Plan einfügen:</p>
+      </div>
+
+      <h3>Phase 1 (erste Stunde) — ergänzen</h3>
+      <ul>
+        <li><span class="npc">Decimus</span> in <span class="ingame">Voidstorm</span> besuchen — wenn Main Voidforge bereits gebaut hat, ist Alt sofort nutzbar</li>
+        <li>Direkt zu <span class="ingame">The Bazaar Level 2</span> in Silvermoon — Vendors begutachten, um zu wissen was du später mit Accolades kaufen willst</li>
+      </ul>
+
+      <h3>Phase 2 (Tag 2–5) — einbauen</h3>
+      <ul>
+        <li><strong>Void Strikes & Void Incursion</strong> wöchentlich machen — füllt Great Vault World Row und Field Accolades stacken</li>
+        <li><strong>Ritual Sites T1–T3 solo</strong> — weitere Great-Vault-World-Credits + Accolade-Farm</li>
+        <li>Sobald ~75 Accolades voll: <strong>Champion-Piece für deinen schlechtesten Slot</strong> kaufen (vor allem wenn ein Ring/Cloak/Boots-Slot noch unter 250 hängt)</li>
+      </ul>
+
+      <h3>Phase 3 (Woche 2) — Voidcore-Power nutzen</h3>
+      <ul>
+        <li>Voidcores auf <strong>+10 M+ Keys einsetzen</strong> → gibt Myth 1/6 (272), entspricht Vault-Level. Das ist die <em>beste M+-Reward-Quelle</em> im Spiel, weil sie RNG-frei ist.</li>
+        <li>Voidcores auf Heroic-Raid-Bossen (<em>kostet 2 Cores pro Roll</em>) für Trinket oder Tier-Slot den du vermisst</li>
+        <li>Bei Thalassian-Tokens-Stack: Extra-Voidcore von <span class="npc">Vaultkeeper Elysa</span> für 6 Tokens kaufen (umgeht Weekly Cap)</li>
+      </ul>
+
+      <h3>Phase 4 (Wochen 3–5) — Endgame-Ziel</h3>
+      <ul>
+        <li>Wenn eine Waffe (gecraftet oder gedropt) auf Myth 6/6 steht: <strong>Ascendant Voidcore auf iLvl 298 upgraden</strong> — massiver Push deutlich über 277 hinaus</li>
+        <li>Für einen einzelnen hartnäckigen Slot ohne Drop: <strong>500 Accolades für Heroic-Piece</strong> ausgeben</li>
+      </ul>
+
+      <h2 id="other-changes">Weitere relevante Änderungen</h2>
+
+      <h3>Mythic+ — Lindormi's Glow</h3>
+      <p>Neues optionales Feature: Wenn der <strong>Tank der Gruppe</strong> es bei <span class="npc">Lindormi</span> (nahe des Timeways-Portals) aktiviert, werden die für die Trash-Count-Erfüllung benötigten Enemies in der Welt markiert. Trash-Pull-Probleme in Keys werden stark entschärft. <em>Als DPS nicht selbst aktivierbar — Tank muss das tun.</em></p>
+
+      <h3>Neue M+ Achievements</h3>
+      <ul>
+        <li><strong>Midnight Keystone Myth: Season One</strong> — 3400 M+ Rating in Season 1 → Timelost Saddle (Mount-Wahl inkl. alter Keystone-Master-Mounts)</li>
+        <li><strong>Umbral Champion: Midnight Season One</strong> — Season mit Top-1%-Rating abschließen → exklusives Mount</li>
+      </ul>
+
+      <h3>Class Tuning — relevante DPS-Änderungen</h3>
+      <div class="callout warn">
+        <div class="callout-title">⚠️ Check deinen Spec!</div>
+        <p>12.0.5 bringt umfassende Class-Tuning für fast alle Specs. Die größten Änderungen:</p>
+        <ul>
+          <li><strong>Balance Druid</strong> — Meteorites-Rework, AoE-Nerfs, Moonfire/Sunfire/Wrath/Starfire/Starsurge +25–40% Damage</li>
+          <li><strong>Feral Druid</strong> — Unseen Predator Rework (Priority-Target-Shift)</li>
+          <li><strong>Subtlety Rogue</strong> — AoE-Nerfs, Shift zu Priority Target</li>
+          <li><strong>Marksmanship Hunter</strong> — Neue Talents (Explosive Shot zurück!), Steady Shot +100%, Arcane/Multi-Shot +33%</li>
+          <li><strong>Warlock Demonology/Destruction</strong> — Conflagration of Chaos Rework, Soul Barrage Update</li>
+          <li><strong>Death Knight Unholy</strong> — Neuer Talent "Cycle of Death", Pestilence → Blightfall</li>
+          <li><strong>Demon Hunter Devourer</strong> — Soul Immolation healt jetzt statt Self-Damage</li>
+          <li><strong>Warrior Fury</strong> — Hack and Slash Redesign (100% Raging Blow Refund)</li>
+          <li><strong>Warrior Arms</strong> — Mortal Wounds triggert jetzt von Slam statt Cleave</li>
+        </ul>
+        <p><strong>Aktion:</strong> Nach Patch-Release Classguide auf Wowhead/Icy-Veins für deinen DPS-Spec neu lesen — Rotation und Talent-Build können sich merklich ändern.</p>
+      </div>
+
+      <h3>Quality-of-Life</h3>
+      <ul>
+        <li><strong>Transmog /outfit Command</strong> — <code>/outfit 1</code>, <code>/outfit 2</code> etc. für Quick-Swap. <code>/outfit !1</code> blockt den Clear-Toggle.</li>
+        <li><strong>Weapon Sheathing</strong> — Waffe an Rücken/Seite/Hüfte oder komplett versteckt (Dual-Wield individuell konfigurierbar)</li>
+        <li><strong>Edit Mode</strong> — Shift-Klick auf Feature-Checkbox aktiviert es direkt (Cooldown Manager, Damage Meter, Boss Warnings etc.)</li>
+        <li><strong>Damage Meter</strong> mit Minimize/Maximize-Button</li>
+        <li><strong>Cross-Faction Invite</strong> aus Recent Allies Window</li>
+        <li><strong>Raid Frame Default-Größe erhöht</strong>, Big Defensive Icon-Slider</li>
+        <li><strong>Deftness-Scaling</strong> (Profession-Stat) gedrosselt für DF/TWW/Midnight Professions — einige Crafting-Builds brauchen Anpassung</li>
+      </ul>
+
+    </div>
+
+    <!-- ==========================================================
          TAB: REFERENCE & PITFALLS
     ========================================================== -->
     <div class="tab-content" id="tab-reference">
@@ -1221,16 +1633,6 @@
         <div class="callout-title">❌ Alte Gold-for-Gear Boost-Guides</div>
         <p>Alles mit Weathered/Carved/Runed/Gilded Namen, Flightstones, Valorstones, Brann Bronzebeard oder Dornogal ist TWW — <strong>ignorieren</strong>.</p>
       </div>
-
-      <h2 id="patch-1205">Patch 12.0.5 "Lingering Shadows" — morgen live (21. April)</h2>
-      <p>Morgen kommt der erste Post-Launch-Content-Patch. Für einen Alt relevant:</p>
-      <ul>
-        <li><strong>Voidforge</strong> — <span class="currency">Nebulous Voidcores</span> (guaranteed-slot drops @ ~iLvl 298); <span class="currency">Ascendant Voidcores</span> upgraden fully-upgradete Waffen/Trinkets past 6/6 bis ~298. <em>Endgame-Content post-277.</em></li>
-        <li><strong>Void Assaults</strong> — Outdoor-Events in Eversong/Zul'Aman.</li>
-        <li><strong>Ritual Sites</strong> — 1–5-Spieler skalierbare Public Quests, füllen Great Vault.</li>
-        <li><strong>Field Accolades Vendor</strong> — tauscht Accolades gegen Champion/Heroic-Level Catch-up Gear. <em>Für Alts direkt relevant.</em></li>
-      </ul>
-      <p>Ab Woche 3+ deine Weekly Routine um Ritual Sites und den Field Accolades Vendor erweitern.</p>
 
       <h2>Was heute Abend konkret tun?</h2>
       <div class="callout ok">
@@ -1315,7 +1717,7 @@
 
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      document.querySelectorAll('.check-item').forEach(item => {
+      document.querySelectorAll('.check-item:not(.patch-check)').forEach(item => {
         const id = item.dataset.id;
         const checkbox = item.querySelector('input[type="checkbox"]');
         if (saved[id]) {
@@ -1330,7 +1732,7 @@
 
   function saveChecklist() {
     const state = {};
-    document.querySelectorAll('.check-item').forEach(item => {
+    document.querySelectorAll('.check-item:not(.patch-check)').forEach(item => {
       const id = item.dataset.id;
       const checked = item.querySelector('input[type="checkbox"]').checked;
       if (checked) state[id] = true;
@@ -1340,15 +1742,15 @@
   }
 
   function updateCount() {
-    const items = document.querySelectorAll('.check-item');
-    const done = document.querySelectorAll('.check-item.done').length;
+    const items = document.querySelectorAll('.check-item:not(.patch-check)');
+    const done = document.querySelectorAll('.check-item:not(.patch-check).done').length;
     const totalEl = document.getElementById('check-total');
     const countEl = document.getElementById('check-count');
     if (totalEl) totalEl.textContent = items.length;
     if (countEl) countEl.textContent = done;
   }
 
-  document.querySelectorAll('.check-item').forEach(item => {
+  document.querySelectorAll('.check-item:not(.patch-check)').forEach(item => {
     const checkbox = item.querySelector('input[type="checkbox"]');
     item.addEventListener('click', (e) => {
       // Wenn direkt auf Checkbox geklickt: nichts tun (Browser macht das)
@@ -1364,12 +1766,73 @@
   function resetChecklist() {
     if (!confirm('Alle Haken entfernen und neue Woche starten?')) return;
     localStorage.removeItem(STORAGE_KEY);
-    document.querySelectorAll('.check-item').forEach(item => {
+    document.querySelectorAll('.check-item:not(.patch-check)').forEach(item => {
       item.querySelector('input[type="checkbox"]').checked = false;
       item.classList.remove('done');
     });
     updateCount();
   }
+
+  // ============ PATCH-CHECKLISTE (separater Storage, kein Weekly-Reset) ============
+  const PATCH_STORAGE_KEY = 'midnight-patch-checklist-v1';
+
+  function loadPatchChecklist() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(PATCH_STORAGE_KEY) || '{}');
+      document.querySelectorAll('.check-item.patch-check').forEach(item => {
+        const id = item.dataset.id;
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        if (saved[id]) {
+          checkbox.checked = true;
+          item.classList.add('done');
+        }
+      });
+    } catch(e) { console.warn('Patch checklist load failed:', e); }
+    updatePatchCount();
+  }
+
+  function savePatchChecklist() {
+    const state = {};
+    document.querySelectorAll('.check-item.patch-check').forEach(item => {
+      const id = item.dataset.id;
+      const checked = item.querySelector('input[type="checkbox"]').checked;
+      if (checked) state[id] = true;
+    });
+    try { localStorage.setItem(PATCH_STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) { console.warn('Patch checklist save failed:', e); }
+  }
+
+  function updatePatchCount() {
+    const items = document.querySelectorAll('.check-item.patch-check');
+    const done = document.querySelectorAll('.check-item.patch-check.done').length;
+    const totalEl = document.getElementById('patch-check-total');
+    const countEl = document.getElementById('patch-check-count');
+    if (totalEl) totalEl.textContent = items.length;
+    if (countEl) countEl.textContent = done;
+  }
+
+  function resetPatchChecklist() {
+    if (!confirm('Patch-Checkliste zurücksetzen?')) return;
+    localStorage.removeItem(PATCH_STORAGE_KEY);
+    document.querySelectorAll('.check-item.patch-check').forEach(item => {
+      item.querySelector('input[type="checkbox"]').checked = false;
+      item.classList.remove('done');
+    });
+    updatePatchCount();
+  }
+
+  // Patch-Checkbox-Listener
+  document.querySelectorAll('.check-item.patch-check').forEach(item => {
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    item.addEventListener('click', (e) => {
+      if (e.target.tagName !== 'INPUT') {
+        checkbox.checked = !checkbox.checked;
+      }
+      item.classList.toggle('done', checkbox.checked);
+      savePatchChecklist();
+      updatePatchCount();
+    });
+  });
 
   // ============ SCROLLSPY: aktive Section in Sidebar markieren ============
   const tocLinks = document.querySelectorAll('.toc a');
@@ -1397,6 +1860,7 @@
 
   // ============ Init ============
   loadChecklist();
+  loadPatchChecklist();
   updateActiveToc();
 </script>
 
