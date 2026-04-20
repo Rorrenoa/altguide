@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WoW Midnight — Alt Gearing Guide (Season 1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     Dark Mode Typography — best-practice basiert
+     Hintergrund: #121212 (kein reines Schwarz, verhindert Edge-Glow)
+     Text:        #E8E6E3 (Off-white, kein reines Weiß, verhindert Halation)
+     Font:        Inter (humanist sans-serif, offene Counter, top Dark-Mode-Legibility)
+     Size:        17px Body, 1.65 line-height, max-width ~72ch
+     Weight:      400 / 500 / 600 — keine Thin-Weights
+     Kontrast:    WCAG AA erfüllt (7.5:1 Body, 4.5:1+ bei Sekundärtext)
+  ========================================================= */
+
+  :root {
+    --bg:         #121212;
+    --bg-raised: #1a1a1a;
+    --bg-card:   #1e1e1e;
+    --bg-inset:  #0e0e0e;
+    --border:    #2a2a2a;
+    --border-strong: #3a3a3a;
+
+    --text:      #E8E6E3;
+    --text-muted: #A8A5A0;
+    --text-dim:  #8a8680;
+
+    --accent:    #C9A227;   /* WoW-Gold, warm, gut lesbar auf dunkel */
+    --accent-hover: #E0B52C;
+    --accent-dim: #8f7420;
+
+    --epic:      #a335ee;   /* WoW epic purple */
+    --rare:      #4a9eff;   /* WoW rare blue */
+    --warn:      #f27c4e;   /* warm orange — Pitfalls */
+    --ok:        #7fb77e;   /* muted green — Success */
+
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, Consolas, monospace;
+
+    --radius: 8px;
+    --radius-lg: 12px;
+
+    --shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 17px; scroll-behavior: smooth; scroll-padding-top: 20px; }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.005em;  /* leichtes Tracking für Dark Mode */
+    min-height: 100vh;
+  }
+
+  /* ==========================================================
+     Layout: Sidebar + Content
+  ========================================================== */
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  /* ==========================================================
+     Sidebar (Inhaltsverzeichnis)
+  ========================================================== */
+  .sidebar {
+    background: var(--bg-raised);
+    border-right: 1px solid var(--border);
+    padding: 28px 24px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    font-size: 0.92rem;
+  }
+
+  .sidebar-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .sidebar-sub {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .toc-heading {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin: 20px 0 8px;
+  }
+
+  .toc {
+    list-style: none;
+  }
+
+  .toc li {
+    margin: 2px 0;
+  }
+
+  .toc a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 10px;
+    display: block;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    border-left: 2px solid transparent;
+    font-weight: 500;
+  }
+
+  .toc a:hover {
+    color: var(--text);
+    background: rgba(201, 162, 39, 0.08);
+    border-left-color: var(--accent);
+  }
+
+  .toc a.active {
+    color: var(--accent);
+    background: rgba(201, 162, 39, 0.12);
+    border-left-color: var(--accent);
+  }
+
+  /* ==========================================================
+     Main Content
+  ========================================================== */
+  .main {
+    padding: 48px 56px;
+    max-width: 900px;
+  }
+
+  .hero {
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .hero .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .pill.gold { color: var(--accent); border-color: var(--accent-dim); }
+
+  /* ==========================================================
+     Tabs
+  ========================================================== */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin: 32px 0 24px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 12px 18px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .tab-btn:hover { color: var(--text); }
+
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab-content { display: none; animation: fadeIn 0.25s ease; }
+  .tab-content.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ==========================================================
+     Typography: Überschriften & Text
+  ========================================================== */
+  h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 40px 0 16px;
+    color: var(--text);
+    scroll-margin-top: 20px;
+  }
+
+  h2:first-child { margin-top: 0; }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 28px 0 12px;
+    color: var(--text);
+    scroll-margin-top: 20px;
+  }
+
+  h4 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 20px 0 8px;
+    color: var(--accent);
+    letter-spacing: 0.005em;
+  }
+
+  p { margin-bottom: 14px; max-width: 72ch; }
+
+  strong { color: var(--text); font-weight: 600; }
+
+  em {
+    color: var(--text);
+    font-style: normal;
+    background: rgba(201, 162, 39, 0.1);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  a {
+    color: var(--rare);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74, 158, 255, 0.3);
+    transition: all 0.15s;
+  }
+
+  a:hover {
+    color: #7ab8ff;
+    border-bottom-color: #7ab8ff;
+  }
+
+  ul, ol {
+    margin: 12px 0 20px 22px;
+    max-width: 72ch;
+  }
+
+  li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+
+  li::marker { color: var(--accent); }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--bg-inset);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent);
+    border: 1px solid var(--border);
+  }
+
+  /* Ingame-Name-Styling */
+  .ingame {
+    font-weight: 600;
+    color: #E8E6E3;
+    border-bottom: 1px dotted var(--accent-dim);
+  }
+
+  .npc {
+    font-weight: 600;
+    color: #d4b15f;
+  }
+
+  .item {
+    font-weight: 600;
+    color: var(--epic);
+  }
+
+  .currency {
+    font-weight: 600;
+    color: var(--rare);
+  }
+
+  /* ==========================================================
+     Boxes & Cards
+  ========================================================== */
+  .callout {
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin: 20px 0;
+  }
+
+  .callout.warn { border-left-color: var(--warn); }
+  .callout.info { border-left-color: var(--rare); }
+  .callout.ok   { border-left-color: var(--ok); }
+
+  .callout-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--accent);
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .callout.warn .callout-title { color: var(--warn); }
+  .callout.info .callout-title { color: var(--rare); }
+  .callout.ok   .callout-title { color: var(--ok); }
+
+  /* Phase-Card */
+  .phase-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .phase-card .phase-badge {
+    display: inline-block;
+    background: rgba(201, 162, 39, 0.15);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .phase-card h3 {
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+
+  .phase-estimate {
+    display: inline-block;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-strong);
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin-top: 12px;
+    font-size: 0.92rem;
+  }
+
+  .phase-estimate strong { color: var(--accent); }
+
+  /* ==========================================================
+     Tabellen
+  ========================================================== */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  th {
+    background: var(--bg-raised);
+    color: var(--accent);
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-strong);
+  }
+
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
+
+  td.highlight { color: var(--accent); font-weight: 600; }
+  tr.hero-row td { background: rgba(74, 158, 255, 0.05); }
+  tr.myth-row td { background: rgba(163, 53, 238, 0.06); }
+
+  /* ==========================================================
+     Weekly Checkliste
+  ========================================================== */
+  .checklist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .progress-ring {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .progress-ring span { color: var(--accent); }
+
+  .reset-btn {
+    background: var(--bg-raised);
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .reset-btn:hover {
+    color: var(--warn);
+    border-color: var(--warn);
+  }
+
+  .check-group {
+    margin-bottom: 28px;
+  }
+
+  .check-group-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .check-item:hover {
+    border-color: var(--border-strong);
+    background: var(--bg-raised);
+  }
+
+  .check-item input[type="checkbox"] {
+    margin-top: 4px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .check-item.done {
+    opacity: 0.55;
+  }
+
+  .check-item.done .check-label {
+    text-decoration: line-through;
+    color: var(--text-dim);
+  }
+
+  .check-label {
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  .check-priority {
+    font-size: 0.72rem;
+    background: var(--bg-inset);
+    color: var(--text-dim);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+
+  .check-priority.top { background: rgba(201, 162, 39, 0.15); color: var(--accent); }
+  .check-priority.high { background: rgba(74, 158, 255, 0.1); color: var(--rare); }
+
+  /* ==========================================================
+     Footer
+  ========================================================== */
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  /* ==========================================================
+     Scrollbar
+  ========================================================== */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #505050; }
+
+  /* ==========================================================
+     Mobile
+  ========================================================== */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .main { padding: 28px 20px; }
+    .hero h1 { font-size: 1.8rem; }
+    html { font-size: 16px; }
+  }
+
+  /* Print */
+  @media print {
+    .sidebar, .tabs, .reset-btn { display: none; }
+    body { background: white; color: black; }
+    .layout { grid-template-columns: 1fr; }
+    .tab-content { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- =====================================================
+       SIDEBAR / Inhaltsverzeichnis
+  ====================================================== -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Midnight Alt Guide</div>
+    <div class="sidebar-sub">Season 1 · Patch 12.0</div>
+
+    <div class="toc-heading">Überblick</div>
+    <ul class="toc">
+      <li><a href="#uebersicht" class="tab-link" data-tab="overview">Ziel & Zeitplan</a></li>
+      <li><a href="#was-sich-geaendert-hat" class="tab-link" data-tab="overview">Was sich geändert hat</a></li>
+      <li><a href="#season-status" class="tab-link" data-tab="overview">Season 1 Status</a></li>
+    </ul>
+
+    <div class="toc-heading">Phasen-Plan</div>
+    <ul class="toc">
+      <li><a href="#phase-1" class="tab-link" data-tab="phases">Phase 1 · Erste Stunde</a></li>
+      <li><a href="#phase-2" class="tab-link" data-tab="phases">Phase 2 · Tage 2–5</a></li>
+      <li><a href="#phase-3" class="tab-link" data-tab="phases">Phase 3 · Woche 2</a></li>
+      <li><a href="#phase-4" class="tab-link" data-tab="phases">Phase 4 · Wochen 3–5</a></li>
+    </ul>
+
+    <div class="toc-heading">Systeme</div>
+    <ul class="toc">
+      <li><a href="#upgrade-tracks" class="tab-link" data-tab="systems">Upgrade Tracks</a></li>
+      <li><a href="#tier-set" class="tab-link" data-tab="systems">Tier Set & Catalyst</a></li>
+      <li><a href="#crest-rules" class="tab-link" data-tab="systems">Crest-Regeln</a></li>
+      <li><a href="#warband" class="tab-link" data-tab="systems">Warband-Vorteile</a></li>
+    </ul>
+
+    <div class="toc-heading">Weekly</div>
+    <ul class="toc">
+      <li><a href="#weekly-checklist" class="tab-link" data-tab="weekly">Checkliste</a></li>
+      <li><a href="#weekly-routine" class="tab-link" data-tab="weekly">Routine-Reihenfolge</a></li>
+    </ul>
+
+    <div class="toc-heading">Reference</div>
+    <ul class="toc">
+      <li><a href="#pitfalls" class="tab-link" data-tab="reference">Pitfalls</a></li>
+      <li><a href="#patch-1205" class="tab-link" data-tab="reference">Patch 12.0.5</a></li>
+      <li><a href="#quellen" class="tab-link" data-tab="reference">Quellen</a></li>
+    </ul>
+  </aside>
+
+  <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
+  <main class="main">
+
+    <div class="hero">
+      <h1>Midnight Season 1 — Alt Gearing Guide</h1>
+      <p class="subtitle">Strukturierter Plan, um deinen DPS-Alt effizient von Level 90 auf <strong style="color:var(--accent)">Item Level 277</strong> zu bringen und mit deinem Main gleichzuziehen.</p>
+      <div class="hero-meta">
+        <span class="pill gold">⚔️ Ziel: iLvl 277</span>
+        <span class="pill">📅 Season 1 · Woche 5</span>
+        <span class="pill">🎮 Patch 12.0.0 → 12.0.5</span>
+        <span class="pill">⏱️ 3–5 Wochen bei 4–6h/Woche</span>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="overview">Überblick</button>
+      <button class="tab-btn" data-tab="phases">Phasen-Plan</button>
+      <button class="tab-btn" data-tab="systems">Systeme</button>
+      <button class="tab-btn" data-tab="weekly">Weekly Checkliste</button>
+      <button class="tab-btn" data-tab="reference">Reference & Pitfalls</button>
+    </div>
+
+    <!-- ==========================================================
+         TAB: ÜBERBLICK
+    ========================================================== -->
+    <div class="tab-content active" id="tab-overview">
+
+      <h2 id="uebersicht">Ziel & Zeitplan</h2>
+      <p>Du spielst Midnight aktuell, hast einen Main auf <strong>iLvl 277</strong> und einen frisch maxierten Alt auf Level 90. Das Ziel: den Alt so effizient wie möglich ebenfalls auf <strong>277</strong> zu bringen — ohne dich in veralteten TWW-Guides zu verlieren.</p>
+
+      <div class="callout info">
+        <div class="callout-title">Wichtige Zeitkorrektur</div>
+        <p>Midnight ist am <strong>2. März 2026</strong> gelauncht, <strong>Season 1 startete am 17. März 2026</strong>. Wir sind aktuell in <strong>Woche 5</strong>. Catalyst Charges sind noch knapp, Tier-Set-Completion in der Community niedrig. Dein 277-Main liegt <em>deutlich über dem Durchschnitt</em> — das ist in etwa Heroic-Raid voll upgegradet (Hero 6/6 = 276) plus 1–2 Myth-Pieces.</p>
+      </div>
+
+      <p>Die wichtigste Erkenntnis gleich vorab: <strong>Der größte Hebel für Alts in Midnight ist der 50% Warband Crest Discount</strong>. Alles, was dein 277-Main bereits auf Hero 6/6 gepusht hat, kostet deinen Alt nur <strong>halb so viele Dawncrests</strong>. Kombiniert mit account-wide Renown, dem Warband Bank, <span class="ingame">Warbound Until Equipped</span>-Items und der neuen <strong>Catalyst Unbound</strong>-Mechanik (4pc Tier Set schaltet Bonus-Catalyst-Charges aus allen Content-Typen frei) gearst du einen Alt in Midnight schneller als in jedem vorherigen Addon.</p>
+
+      <h3>Realistischer Zeitrahmen</h3>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Phase</th><th>Dauer</th><th>iLvl nach Phase</th><th>Fokus</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Phase 1</strong></td><td>1–2 Stunden</td><td class="highlight">~245–250</td><td>NPC-Setup, Renown Gear, World Boss</td></tr>
+          <tr><td><strong>Phase 2</strong></td><td>Tag 2–5</td><td class="highlight">~260–265</td><td>M0, Bountiful Delves, LFR für Tier</td></tr>
+          <tr><td><strong>Phase 3</strong></td><td>Woche 2</td><td class="highlight">~268–272</td><td>+10 Keys, Heroic Raid, Beacon of Hope</td></tr>
+          <tr><td><strong>Phase 4</strong></td><td>Woche 3–5</td><td class="highlight">~274–278</td><td>Hero 6/6 Upgrades, Myth Drops, Crafted Recraft</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="was-sich-geaendert-hat">Was sich gegenüber TWW geändert hat — alte Guides ignorieren</h2>
+      <p>Bevor du irgendetwas online liest: Diese Systeme aus The War Within <strong>existieren nicht mehr</strong> oder wurden umbenannt. Jeder Guide, der sie noch erwähnt, ist veraltet.</p>
+
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>TWW (veraltet)</th><th>Midnight (aktuell)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="currency">Valorstones</span> + Crests zum Upgraden</td><td>Nur noch <span class="currency">Dawncrests</span> + kleine Goldgebühr</td></tr>
+          <tr><td>Weathered / Carved / Runed / Gilded Crests</td><td>Adventurer / Veteran / Champion / <strong>Hero</strong> / <strong>Myth</strong> <span class="currency">Dawncrests</span></td></tr>
+          <tr><td>45-für-15 Crest-Upgrade</td><td>Nur noch <em>Downgrade</em> 10-für-10 bei <span class="npc">Vaskarn</span></td></tr>
+          <tr><td><span class="npc">Brann Bronzebeard</span> als Delve Companion</td><td><span class="npc">Valeera Sanguinar</span> (Tank / Heal / DPS wechselbar)</td></tr>
+          <tr><td>Coffer Keys (Items)</td><td><span class="currency">Coffer Key Shards</span> (600/Woche, 100 = 1 Restored Key, auto-konvertiert)</td></tr>
+          <tr><td>Dornogal als Hub</td><td><span class="ingame">Silvermoon City</span></td></tr>
+          <tr><td>Council of Dornogal / Hallowfall Arathi / Severed Threads</td><td><span class="ingame">Silvermoon Court</span> / <span class="ingame">Amani Tribe</span> / <span class="ingame">Hara'ti</span> / <span class="ingame">The Singularity</span></td></tr>
+          <tr><td>Bullion / Residual Memories</td><td>Warband Discount + WUE Drops + uncapped-crest Weeklies</td></tr>
+          <tr><td>Catalyst nach 3 Wochen freigeschaltet</td><td><strong>Matrix Catalyst</strong> sofort zum Season-Start live</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="season-status">Season 1 Status — wo stehen wir?</h2>
+
+      <h3>Season 1 Raid: 3-teilige Sequenz, 9 Bosse</h3>
+      <ul>
+        <li><strong>The Voidspire</strong> (6 Bosse, Tier-Set-Bosse hier) — <span class="ingame">Lightblinded Vanguard</span> (Head), <span class="ingame">Salhadaar</span> (Shoulders), <span class="ingame">Vorasius</span> (Hands), <span class="ingame">Vaelgor & Ezzorak</span> (Legs)</li>
+        <li><strong>The Dreamrift</strong> (1 Boss: <span class="ingame">Chimaerus the Undreamt God</span> — dropt Chest-Tier)</li>
+        <li><strong>March on Quel'Danas</strong> (2 Bosse: <span class="ingame">Belo'ren</span>, <span class="ingame">Midnight Falls</span>)</li>
+      </ul>
+      <p>Base iLvls pro Difficulty: <strong>LFR</strong> 233–243, <strong>Normal</strong> 246–256, <strong>Heroic</strong> 259–269, <strong>Mythic</strong> 272–282.</p>
+
+      <h3>Mythic+ Dungeon-Pool Season 1</h3>
+      <p>Magister's Terrace, Maisara Caverns, Nexus-Point Xenas, Windrunner Spire, Algeth'ar Academy, <strong>Pit of Saron</strong> (erster Wrath-Dungeon je in M+), Seat of the Triumvirate, Skyreach. End-of-Dungeon-Drops cappen bei <strong>Hero 3/6 (266) ab +10</strong>, Vault bei <strong>Myth 1/6 (272) ab +10</strong>. Höhere Keys geben keine bessere Gear — nur mehr Crests, Rating und Title.</p>
+
+      <h3>Delves & Prey</h3>
+      <p><strong>Delves</strong> laufen Tier 1–11 mit der neuen account-wide <span class="ingame">Delver's Journey</span> (10 Ränge). Direkt-Loot cappt bei T8 (Champion 2/6, 250). Bountiful Delves T8+ mit <span class="currency">Restored Coffer Key</span> droppen Hero track. <strong>T11 Gilded Stashes</strong> (ab Rank 4 Delver's Journey) droppen <strong>7 Myth Dawncrests pro Run, bis zu 3× pro Woche uncapped</strong> — eine der nur zwei uncapped Myth-Quellen im Spiel.</p>
+
+      <p><strong>Prey</strong> ist Midnights neues Open-World-Hunt-System (<span class="npc">Astalor Bloodsworn</span>, Murder Row). Drei Schwierigkeiten: Normal / Hard / Nightmare. <strong>Hart gecappt bei 4 relevanten Hunts pro Woche</strong> — weitere Hunts geben nur 50 Journey Points statt 1.000.</p>
+
+    </div>
+
+    <!-- ==========================================================
+         TAB: PHASEN-PLAN
+    ========================================================== -->
+    <div class="tab-content" id="tab-phases">
+
+      <h2>Der Phasen-Plan — Schritt für Schritt</h2>
+      <p>Vier Phasen, jede mit klaren Aktivitäten und erwartetem iLvl-Gewinn. Arbeite sie in Reihenfolge ab — Phase 1 dauert nur 1–2 Stunden, lohnt sich aber enorm.</p>
+
+      <!-- PHASE 1 -->
+      <div class="phase-card" id="phase-1">
+        <span class="phase-badge">Phase 1 · Erste Stunde</span>
+        <h3>NPC-Setup & Sofort-Gear</h3>
+        <p>Dein Ziel in den ersten 60–90 Minuten: Alle account-wide Benefits freischalten und jede einfache One-Time-Belohnung mitnehmen. Flieg nach <span class="ingame">Silvermoon City</span> und klapper diese NPCs in dieser Reihenfolge ab:</p>
+
+        <ol>
+          <li><span class="npc">Lady Liadrin</span> (Sanctum of Light, ~49/65) — <strong>Weekly Spark of Radiance Quest</strong> aufnehmen, damit der Timer Tag 1 startet. Gibt auch Zugang zum Campaign-Skip-Flow.</li>
+          <li><span class="npc">Soridormi</span> (Wayfarer's Rest Tavern, ~55/69) — Dialogoption <em>"I've seen how this ends. (Skip the Midnight Campaign)"</em>. Flagt sofort alle 17 Campaign-Kapitel als komplett, schaltet World Quests, Endgame-Delve-Zugang und Voidspire-Attunement frei. Benötigt Achievement <em>"Call of the Light"</em> auf irgendeinem Warband-Charakter (hat dein Main).</li>
+          <li><span class="npc">Magister Astalor Bloodsworn</span> (Murder Row, ~55/63) — Prey-System-Unlock ist warband-shared; auf dem Alt instant, wenn Main es gemacht hat.</li>
+          <li><span class="npc">Naleidea Rivergleam</span> (Delver's Headquarters, The Bazaar) — <strong>Delver's Starter Kit</strong> abholen (2 Restored Coffer Keys über dem Cap — einmal pro Warband, also jemandem geben, der sie braucht) + 200 Coffer Key Shards von Litas Intro.</li>
+          <li><span class="npc">Halduron Brightwing</span> — Weekly Dungeon Quest (1.500 Rep auf Wahl, jede Difficulty, auch Follower Dungeons).</li>
+          <li><span class="npc">Cuzolth</span> (Silvermoon Bazaar, 48.6/62) — Upgrade-Vendor. <span class="npc">Vaskarn</span> (Crest-Exchanger) steht daneben.</li>
+        </ol>
+
+        <h4>Dann 4 "kostenlose" Gear-Pieces einsammeln</h4>
+        <p>Renown ist in Midnight warband-shared — die Renown-Ränge deines Mains übertragen sich <strong>sofort</strong> auf den Alt:</p>
+        <ul>
+          <li><span class="item">Silvermoon Court Helm</span> — Renown 9 (Champion 1/6, iLvl 246)</li>
+          <li><span class="item">Amani Tribe Neck</span> — Renown 9</li>
+          <li><span class="item">Hara'ti Belt</span> — Renown 8</li>
+          <li><span class="item">The Singularity Trinket</span> — Renown 7</li>
+        </ul>
+
+        <h4>World Boss + Warband Bank</h4>
+        <p>Den aktuellen World Boss killen (rotiert wöchentlich zwischen Eversong / Zul'Aman / Voidstorm / Harandar) — dropt <strong>ein Champion 4/6 (256) Warbound-Until-Equipped Piece pro Warband pro Woche</strong>. Kannst du dem Alt mailen.</p>
+        <p><strong>Warband Bank aufräumen</strong>: Gold, Reagents, WUE Hand-me-downs, Sparks vom Main einlagern. Gold, Reagents und Warbound-Items werden geteilt. <span class="currency">Dawncrests</span> und <span class="currency">Sparks of Radiance</span> sind character-bound.</p>
+
+        <div class="phase-estimate">⚡ Erwartetes iLvl nach Phase 1: <strong>~245–250</strong></div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="phase-card" id="phase-2">
+        <span class="phase-badge">Phase 2 · Tag 2–5</span>
+        <h3>Champion/Hero Baseline aufbauen</h3>
+        <p>Diese Phase pusht dich von ~245 auf ~263 — fast komplett solo oder PUG-fähig. Prioritätenreihenfolge:</p>
+
+        <ul>
+          <li><strong>Alle 8 M0 Dungeons einmal clearen</strong> (Weekly-Lockout pro Dungeon in Midnight, nicht daily). Jeder dropt Champion 1/6–2/6 (246–250) + Champion Dawncrests. Füllt zuverlässig 5–7 Slots.</li>
+          <li><strong>4 Bountiful Delves Tier 8</strong> mit <span class="currency">Restored Coffer Keys</span> (Keys verbrennen, nicht horten — cappen bei 6/Woche aus Shards). Direct Drops Champion 2/6 (250). Das <strong>Delver's Bounty Map</strong>, das vom <span class="ingame">Nullaeus</span> bei 50% HP dropt, upgradet auf Hero Track.</li>
+          <li><strong>Voidspire LFR sofort queuen</strong> — nicht für Gear, sondern für Tier Tokens. 4pc Tier auf diesem Alt ist der wichtigste Unlock in Midnight, weil es das <strong>"Catalyst Unbound" Feat of Strength</strong> triggert. Danach droppen Catalyst Charges als Random Loot aus Raid, M+, Bountiful Delves und Rated PvP den ganzen Rest der Season. Ohne diesen Unlock kriegst du nur ~1 Charge alle 2 Wochen. LFR Tier ist 233–243 iLvl — hässlich, aber absolut fine als Stepping Stone.</li>
+          <li><strong>4 Nightmare Prey Hunts</strong> (einer pro Zone, die ersten 4 weekly sind je 1.000 Points wert, weitere nur 50 — <em>nicht mehr grinden</em>). Nightmare Prey dropt Champion Gear + füllt Great Vault World Row.</li>
+          <li><strong>Astalors weekly "3× Nightmare Prey" Quest</strong> aufnehmen — belohnt ein <span class="item">Beacon of Hope</span> Map + <strong>20 uncapped Hero Dawncrests</strong>. Der Beacon ist der Key für Phase 3.</li>
+          <li><strong>Delver's Journey Rank 4 freischalten</strong> durch stetiges Laufen von Bountiful Delves (je ~1.000 Journey Points über Delver's Call Weekly). Rank 4 unlockt Gilded Stashes als Myth-Crest-Quelle.</li>
+          <li><strong>Adventurer, Veteran und Champion Dawncrests aggressiv ausgeben</strong> um jeden hinterherhinkenden Slot mindestens auf Champion 4/6 (256) zu pushen. <strong>Hero und Myth Crests noch nicht ausgeben</strong> — aufheben!</li>
+        </ul>
+
+        <div class="phase-estimate">⚡ Erwartetes iLvl nach Phase 2: <strong>~260–265</strong></div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="phase-card" id="phase-3">
+        <span class="phase-badge">Phase 3 · Woche 2</span>
+        <h3>Hero Track & Heroic Raid</h3>
+        <p>Jetzt beginnt der eigentliche Gear-Climb.</p>
+
+        <ul>
+          <li><strong>Ein +10 M+ Key pro Woche ist die wichtigste Aktivität.</strong> Gibt End-of-Dungeon Hero 3/6 (266) + Vault Slot bei Myth 1/6 (272) — schon über deinem Hero 6/6 Upgrade-Ceiling. Bevor du +10 timen kannst, brauchst du +6/+7/+8 Keys (jeder gibt 10–18 Hero Dawncrests). Ziel: mindestens 8 M+ Keys für volle Vault Row.</li>
+          <li><strong>Heroic Voidspire (6 Bosse) + Chimaerus + beide Quel'Danas Bosse</strong> clearen wenn möglich. Heroic dropt Hero Track (259 → 269). Heroic Raid Vault Slot bei 6 Bossen = Hero 4/6 (269). Raid Row füllen mit 6 Heroic Bossen; Minimum 2 Heroic Kills + LFR/Normal für Vault-Option.</li>
+          <li><strong>Beacon of Hope in einem T11 Bountiful Delve einsetzen.</strong> Completion = <strong>Cracked Keystone Quest → 20 uncapped Hero + 20 uncapped Myth Dawncrests + Hero-Track Item</strong>. <em>Die höchstwertige Solo-Stunde in ganz Midnight.</em> Außerdem: Kill <span class="ingame">Nullaeus</span> ("?"-Version) wann immer er in Delves spawnt = 30 weitere uncapped Hero Dawncrests.</li>
+          <li><strong>Erste 2 Sparks of Radiance benutzen</strong> um eine <strong>Waffe zu craften</strong> über <span class="npc">Mar'nah</span> im Bazaar (oder Crafting Order wenn kein Profession). Crestless craften — Base iLvl 259 ist ein massives Upgrade. <strong>KEINE Hero Crests</strong> reinstecken um auf 272 zu pushen — du recraftest später mit Myth Crests auf 285, sonst Hero Crests verschwendet. 2H-Waffen kosten 4 Sparks (~4 Wochen).</li>
+          <li><strong>4pc Tier Set aktivieren sobald Tokens vorhanden.</strong> Gestackte Catalyst Charges aggressiv ausgeben — <em>nicht horten</em>. Head, Shoulders, Chest, Hands und Legs zählen für 2pc/4pc. Optimaler Ansatz: Höchstes Non-Tier-Piece in einem Tier-Slot catalysen (typisch Chest oder Legs — Classguide checken). Sobald 4pc aktiv ist, kickt Catalyst Unbound und du siehst Charge Drops.</li>
+        </ul>
+
+        <div class="phase-estimate">⚡ Erwartetes iLvl nach Phase 3: <strong>~268–272</strong></div>
+      </div>
+
+      <!-- PHASE 4 -->
+      <div class="phase-card" id="phase-4">
+        <span class="phase-badge">Phase 4 · Wochen 3–5</span>
+        <h3>Den Main einholen — 277</h3>
+        <p>Ab jetzt geht's fast nur noch um wöchentliche Vault-Optimierung, das richtige Upgrade-Timing für Hero-Pieces auf 6/6 und ein paar Myth-Drops.</p>
+
+        <ul>
+          <li><strong>Hero Pieces auf 6/6 (276) upgraden</strong> in dieser Reihenfolge: Chest → Legs → Helm → ein Ring → ein Trinket. Jedes Piece kostet 100 Hero Dawncrests full price — aber wenn dein 277-Main diese Slots schon auf Hero 6/6 hat, <strong>zahlt dein Alt nur 50 pro Slot</strong> dank Warband Discount. <em>Hier zahlt sich der Main-Progress aus.</em></li>
+          <li><strong>Weekly +10 → Myth 1/6 (272) Vault Drop</strong> weiter fahren. Jedes Myth Piece aus Vault oder Mythic Raid ist Upgrade-wert (aber Myth Crests erst ausgeben wenn Warband Discount greift).</li>
+          <li><strong>Früher Mythic Raid</strong> wenn deine Gilde/Community <span class="ingame">Averzian</span> und <span class="ingame">Vorasius</span> cleart — die zwei einfachsten Mythic Bosse droppen 272/276 direkt. Kein Attunement außer Gruppen-Zugang.</li>
+          <li><strong>Waffe recraften mit 80 Myth Dawncrests</strong> (→ 285 iLvl) sobald genug Myth Crests gespart und Embellishment-Wahl final.</li>
+          <li><strong>Zweites Embellished Item craften</strong> (max 2 equipped). Gute Alt-Slots: Back / Wrists / Waist / Boots / Rings (Tier-Slots vermeiden — nicht catalysable). Spec-spezifische Embellishment-Guides auf Wowhead.</li>
+          <li><strong>Thalassian Tokens of Merit nutzen</strong> — wenn Vault nichts bringt, Gear skippen und Tokens banken. 6 Tokens = 1 <span class="currency">Spark of Radiance</span>, 2 Tokens = 10 Hero Dawncrests, 6 Tokens = Socket Item. Die neue "Skip-the-Vault"-Catchup.</li>
+        </ul>
+
+        <div class="phase-estimate">⚡ Erwartetes iLvl nach Phase 4: <strong>~274–278</strong> — du bist funktional beim Main.</div>
+      </div>
+
+    </div>
+
+    <!-- ==========================================================
+         TAB: SYSTEME
+    ========================================================== -->
+    <div class="tab-content" id="tab-systems">
+
+      <h2 id="upgrade-tracks">Upgrade Tracks & Item Level Ceilings</h2>
+      <p>Die wichtigste Referenz-Tabelle für deinen kompletten Weg. Dein Target <strong>277</strong> sitzt zwischen Hero 6/6 (276) und Myth 3/6 (279) — praktisch heißt das: volles Set fully-upgradeter Heroic-Raid / +10-M+-Gear plus 1–2 Myth Pieces aus Mythic Raid oder +10 Vaults.</p>
+
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Track</th>
+            <th>1/6</th>
+            <th>2/6</th>
+            <th>3/6</th>
+            <th>4/6</th>
+            <th>5/6</th>
+            <th>6/6</th>
+            <th>Crest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Adventurer</strong></td>
+            <td>220</td><td>224</td><td>227</td><td>230</td><td>—</td><td>233</td>
+            <td><span class="currency">Adventurer</span></td>
+          </tr>
+          <tr>
+            <td><strong>Veteran</strong></td>
+            <td>233</td><td>237</td><td>240</td><td>243</td><td>—</td><td>246</td>
+            <td><span class="currency">Veteran</span></td>
+          </tr>
+          <tr>
+            <td><strong>Champion</strong></td>
+            <td>246</td><td>250</td><td>253</td><td>256</td><td>259</td><td>263</td>
+            <td><span class="currency">Champion</span></td>
+          </tr>
+          <tr class="hero-row">
+            <td><strong>Hero</strong></td>
+            <td>259</td><td>263</td><td>266</td><td>269</td><td>272</td><td class="highlight">276</td>
+            <td><span class="currency">Hero</span></td>
+          </tr>
+          <tr class="myth-row">
+            <td><strong>Myth</strong></td>
+            <td class="highlight">272</td><td class="highlight">276</td><td class="highlight">279</td><td>282</td><td>285</td><td>289</td>
+            <td><span class="currency">Myth</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>Wo kommen welche Crests her?</h3>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Crest</th><th>Beste Quellen</th><th>Weekly Cap</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="currency">Adventurer</span></td>
+            <td>Heroic Dungeons, World Quests, niedrige Delves</td>
+            <td>Uncapped</td>
+          </tr>
+          <tr>
+            <td><span class="currency">Veteran</span></td>
+            <td>M0, Delves T1–4, Normal Raid</td>
+            <td>Uncapped</td>
+          </tr>
+          <tr>
+            <td><span class="currency">Champion</span></td>
+            <td>M+ +2 bis +5, Delves T5–7, Heroic Raid Bosses</td>
+            <td>90/Woche</td>
+          </tr>
+          <tr class="hero-row">
+            <td><span class="currency">Hero</span></td>
+            <td>M+ +6 bis +9, Delves T8+, Heroic Raid (späte Bosse)<br><strong>Uncapped:</strong> Cracked Keystone Quest, Nullaeus "?"-Kill</td>
+            <td>100/Woche (regulär)</td>
+          </tr>
+          <tr class="myth-row">
+            <td><span class="currency">Myth</span></td>
+            <td>M+ +10, Mythic Raid<br><strong>Uncapped:</strong> T11 Gilded Stashes (3×/Woche), Cracked Keystone Quest, Nullaeus "??"-Kill</td>
+            <td>90/Woche (regulär)</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="tier-set">Tier Set & Catalyst — der schnellste Weg zu 4pc</h2>
+
+      <div class="callout">
+        <div class="callout-title">Kernerkenntnis Midnight</div>
+        <p><strong>Catalyst Unbound</strong> ist ein Feat of Strength, das du beim ersten 4pc Tier Set bekommst. Danach droppen Catalyst Charges als Random Loot aus Raid Bosses, M+, Bountiful Delves und Rated PvP — für den Rest der Season. Jede Woche ohne 4pc = eine Woche verlorene Charge Drops.</p>
+      </div>
+
+      <h3>Optimale Sequenz</h3>
+      <ol>
+        <li><strong>LFR-Spam für Voidspire Wing 1 und 2 sofort an Tag 1.</strong> LFR Tier ist 233–243 und hässlich, aber aktiviert Catalyst Unbound in dem Moment, wo 4pc klickt.</li>
+        <li>Du hast aktuell <strong>~3 Baseline Catalyst Charges</strong> angesammelt (Season Start + Wochen 3 + 5), plus evtl. Bonus-Charge von "Champion of the Dawn" (2000 M+ Rating, 1600 PvP, oder Heroic/Mythic Midnight Falls). Cap ist 8 Charges.</li>
+        <li><strong>Charges aggressiv ausgeben, nicht defensiv.</strong> Höchstes Non-Tier-Piece in einen Tier-Slot catalysen. Der Catalyst behält Base iLvl und Upgrade Track — ein Hero 4/6 (269) Non-Tier Chest wird zu Hero 4/6 Tier Chest.</li>
+        <li><strong>Dann Tier iLvl upgraden</strong> mit Hero/Myth Dawncrests sobald Warband Discount aktiv. Mid-Season-Ziel: 4pc auf Hero 6/6 (276) auf vier Pieces + Myth 3/6+ auf dem fünften, 2pc/4pc Bonus aktiv unabhängig vom iLvl.</li>
+      </ol>
+
+      <h3>Tier-Set-Slot-Quellen (Voidspire Raid)</h3>
+      <ul>
+        <li><strong>Head</strong> — <span class="ingame">Lightblinded Vanguard</span></li>
+        <li><strong>Shoulders</strong> — <span class="ingame">Salhadaar</span></li>
+        <li><strong>Chest</strong> — <span class="ingame">Chimaerus the Undreamt God</span> (Dreamrift)</li>
+        <li><strong>Hands</strong> — <span class="ingame">Vorasius</span></li>
+        <li><strong>Legs</strong> — <span class="ingame">Vaelgor & Ezzorak</span></li>
+      </ul>
+
+      <h2 id="crest-rules">Crest-Spending-Regeln — die wichtigste Alt-Disziplin</h2>
+      <p>Weil Crests jetzt track-gelockt sind (kein Upgraden niedriger zu höher mehr), sind <em>richtige Spending-Entscheidungen wichtiger als mehr Grind</em>.</p>
+
+      <div class="callout ok">
+        <div class="callout-title">Sofort ausgeben, immer</div>
+        <p><span class="currency">Adventurer</span>, <span class="currency">Veteran</span>, <span class="currency">Champion</span> Dawncrests. Das sind Floor-Crests — <strong>nie drauf sitzen</strong>. Jeden hinterherhinkenden Slot auf Champion 4/6 (256) pushen, dann Hero-Entries wenn Gear kommt.</p>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-title">Halten, dann batch-ausgeben</div>
+        <p><span class="currency">Hero</span> Dawncrests. <strong>300–400 stackpilen</strong>, dann fünf Slots in einer Session auf Hero 6/6 pushen sobald Warband Discount greift. Weekly Cap 100.</p>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-title">Noch länger halten</div>
+        <p><span class="currency">Myth</span> Dawncrests. <strong>Nur auf gedroppte Myth-Gear</strong> aus Mythic Raid oder +10 Vault ausgeben — und idealerweise erst nachdem dein Main diesen Slot auf Myth 6/6 hat (Discount). Uncapped Myth-Quellen (Cracked Keystone, T11 Gilded Stashes, "??" Nullaeus) heißt: du kannst >100/Woche sammeln.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">Niemals</div>
+        <p><strong>80 Hero Crests zu einem Crafted Item adden.</strong> Du recraftest später mit Myth und verschwendest die Hero Crests.</p>
+      </div>
+
+      <h2 id="warband">Warband-Vorteile im Detail</h2>
+
+      <h3>True Midnight-exklusive Alt-Benefits</h3>
+      <ul>
+        <li><strong>50% Warband Crest Discount</strong> auf Tiers, die ein Main schon komplettiert hat — der größte Alt-Hebel aller Zeiten.</li>
+        <li><strong>Catalyst Unbound Feat of Strength</strong> — macht Charges zu Loot-Drops nach erstem 4pc.</li>
+        <li><strong>Delver's Journey</strong> (10-Rang account-wide Delve-Track mit Myth-Crest-Rewards ab Rank 4+).</li>
+        <li><strong>Prey-System</strong> mit <span class="npc">Astalor Bloodsworn</span>, Nightmare Difficulty, Preyseeker's Journey.</li>
+        <li><strong>Vier account-wide Renown-Factions ab Tag 1</strong> — Silvermoon Court, Amani Tribe, Hara'ti, The Singularity. Kein Catchup nötig weil Mains Renown instant übertragen wird.</li>
+        <li><strong>Player Housing (live seit 12.0.0)</strong> — kein direkter Gear-Impact, aber Prey/Delves/Raids droppen Housing-Decor als Bonus-Loot.</li>
+        <li><strong>Uncapped Myth-Crest-Quellen</strong> — Cracked Keystone, T11 Gilded Stashes, "??" Nullaeus.</li>
+      </ul>
+
+      <h3>TWW-Carryovers die weiterhin wirken</h3>
+      <ul>
+        <li><strong>Warband Bank</strong> (5 Tabs, 490 Slots, ~3.1M Gold Full-Unlock; shared Gold/Reagents/Warbound-Items).</li>
+        <li><strong>Warbound Until Equipped</strong> — Rares droppen 220 WUE; World Bosses droppen 256 Champion WUE; Raid/M+ droppen WUE auf verschiedenen Tiers.</li>
+        <li><strong>Skyriding und Steady Flight</strong> account-wide, kein Pathfinder mehr.</li>
+        <li><strong>Warband XP Bonus</strong> (+5% pro Level-90-Char, stackbar bis +25%).</li>
+        <li><strong>Warband Achievements</strong> (one-and-done account-weit).</li>
+      </ul>
+
+    </div>
+
+    <!-- ==========================================================
+         TAB: WEEKLY CHECKLISTE
+    ========================================================== -->
+    <div class="tab-content" id="tab-weekly">
+
+      <h2 id="weekly-checklist">Weekly Checkliste</h2>
+      <p>Die wöchentliche Routine, sortiert nach Effizienz. Abhaken direkt hier — dein Fortschritt wird im Browser gespeichert.</p>
+
+      <div class="checklist-header">
+        <div class="progress-ring"><span id="check-count">0</span> / <span id="check-total">0</span> erledigt</div>
+        <button class="reset-btn" onclick="resetChecklist()">🔄 Woche zurücksetzen</button>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">🔥 Top-Priorität · höchste Effizienz</div>
+
+        <label class="check-item" data-id="liadrin">
+          <input type="checkbox">
+          <div class="check-label"><strong>Liadrin Weekly Spark Quest</strong> holen — 1 <span class="currency">Spark of Radiance</span>/Woche für Crafting</div>
+          <span class="check-priority top">5 Min</span>
+        </label>
+
+        <label class="check-item" data-id="astalor-weekly">
+          <input type="checkbox">
+          <div class="check-label"><strong>Astalor 3× Nightmare Prey Weekly</strong> → <span class="item">Beacon of Hope</span> + 20 uncapped Hero Dawncrests</div>
+          <span class="check-priority top">~45 Min</span>
+        </label>
+
+        <label class="check-item" data-id="beacon-delve">
+          <input type="checkbox">
+          <div class="check-label"><strong>T11 Bountiful Delve mit Beacon of Hope</strong> → Cracked Keystone (20 uncapped Hero + 20 uncapped Myth) + Hero Item. <em>Beste Solo-Stunde überhaupt.</em></div>
+          <span class="check-priority top">~1h</span>
+        </label>
+
+        <label class="check-item" data-id="m-plus-10">
+          <input type="checkbox">
+          <div class="check-label"><strong>Ein +10 M+ Key getimt</strong> → Myth 1/6 (272) Vault Option</div>
+          <span class="check-priority top">~45 Min</span>
+        </label>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">⚡ Hohe Priorität · Vault füllen</div>
+
+        <label class="check-item" data-id="m-plus-4">
+          <input type="checkbox">
+          <div class="check-label"><strong>4 M+ Keys total</strong> (für 2. Vault Slot)</div>
+          <span class="check-priority high">~2h</span>
+        </label>
+
+        <label class="check-item" data-id="m-plus-8">
+          <input type="checkbox">
+          <div class="check-label"><strong>8 M+ Keys total</strong> (für 3. Vault Slot)</div>
+          <span class="check-priority high">~4h total</span>
+        </label>
+
+        <label class="check-item" data-id="heroic-raid-2">
+          <input type="checkbox">
+          <div class="check-label"><strong>Heroic Raid: mindestens 2 Bosse</strong> für 1. Raid-Vault-Slot</div>
+          <span class="check-priority high">~45 Min</span>
+        </label>
+
+        <label class="check-item" data-id="heroic-raid-6">
+          <input type="checkbox">
+          <div class="check-label"><strong>Heroic Raid: 6 Bosse idealerweise</strong> für volle Raid-Vault-Row</div>
+          <span class="check-priority high">~2h</span>
+        </label>
+
+        <label class="check-item" data-id="prey-4">
+          <input type="checkbox">
+          <div class="check-label"><strong>4 Nightmare Prey Hunts</strong> (einer pro Zone — nicht mehr, diminishing returns)</div>
+          <span class="check-priority high">~45 Min</span>
+        </label>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">💎 Uncapped Crest Quellen · immer mitnehmen</div>
+
+        <label class="check-item" data-id="nullaeus">
+          <input type="checkbox">
+          <div class="check-label">Wenn <span class="ingame">Nullaeus</span> ("?"-Version) in einem Delve spawnt → killen für <strong>30 uncapped Hero Dawncrests</strong></div>
+          <span class="check-priority">opportunistisch</span>
+        </label>
+
+        <label class="check-item" data-id="gilded-stash-1">
+          <input type="checkbox">
+          <div class="check-label"><strong>T11 Gilded Stash #1</strong> → 7 uncapped Myth Dawncrests (braucht Delver's Journey Rank 4)</div>
+          <span class="check-priority">~25 Min</span>
+        </label>
+
+        <label class="check-item" data-id="gilded-stash-2">
+          <input type="checkbox">
+          <div class="check-label"><strong>T11 Gilded Stash #2</strong> → 7 uncapped Myth Dawncrests</div>
+          <span class="check-priority">~25 Min</span>
+        </label>
+
+        <label class="check-item" data-id="gilded-stash-3">
+          <input type="checkbox">
+          <div class="check-label"><strong>T11 Gilded Stash #3</strong> → 7 uncapped Myth Dawncrests</div>
+          <span class="check-priority">~25 Min</span>
+        </label>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">🌍 Weekly Events & World</div>
+
+        <label class="check-item" data-id="world-boss">
+          <input type="checkbox">
+          <div class="check-label"><strong>World Boss</strong> (rotiert wöchentlich) — Champion 4/6 (256) WUE Piece pro Warband</div>
+          <span class="check-priority">~10 Min</span>
+        </label>
+
+        <label class="check-item" data-id="halduron-weekly">
+          <input type="checkbox">
+          <div class="check-label"><span class="npc">Halduron Brightwing</span> Weekly Dungeon Quest — 1.500 Rep Wahl</div>
+          <span class="check-priority">passiv</span>
+        </label>
+
+        <label class="check-item" data-id="bountiful-delves">
+          <input type="checkbox">
+          <div class="check-label"><strong>Bountiful Delves T8+ aufbrauchen</strong> — Coffer Keys nicht horten (cappen bei 6)</div>
+          <span class="check-priority">~1h</span>
+        </label>
+      </div>
+
+      <div class="check-group">
+        <div class="check-group-title">📊 Vault-Öffnung (Reset-Tag)</div>
+
+        <label class="check-item" data-id="vault-open">
+          <input type="checkbox">
+          <div class="check-label"><strong>Great Vault öffnen — zuletzt!</strong> Nur nehmen wenn klares Upgrade, sonst <span class="currency">Thalassian Tokens of Merit</span> banken</div>
+          <span class="check-priority">2 Min</span>
+        </label>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-title">Realistisches Zeitbudget</div>
+        <p><strong>4–6 Stunden</strong> wenn du M+ pugst, <strong>2–3 Stunden</strong> wenn du Heroic Raid skippst und nur Vault-Minimum fährst.</p>
+      </div>
+
+      <h2 id="weekly-routine">Optimale Reihenfolge (Steady State)</h2>
+      <p>Wenn du nach Reihenfolge-Effizienz statt nach Kategorie vorgehen willst:</p>
+      <ol>
+        <li>Liadrin Spark Quest holen (passiv)</li>
+        <li>Astalor 3× Nightmare Prey Weekly → Beacon of Hope</li>
+        <li>T11 Bountiful Delve mit Beacon → Cracked Keystone Quest</li>
+        <li>Ein +10 M+ getimt → Vault Slot #1 (Myth 1/6)</li>
+        <li>Weiter M+ bis 4 Keys → Vault Slot #2, bis 8 → Slot #3</li>
+        <li>Heroic Raid: 2 Bosse Minimum, ideal 6</li>
+        <li>4 Nightmare Prey Hunts (einer pro Zone)</li>
+        <li>World Boss (wöchentlich rotierend)</li>
+        <li>Nullaeus "?"-Version killen wann immer er spawnt</li>
+        <li>3× T11 Gilded Stash → bis zu 21 uncapped Myth Dawncrests</li>
+        <li><strong>Vault zuletzt öffnen</strong> — nur nehmen wenn Upgrade, sonst Tokens banken</li>
+        <li><em>Nach 12.0.5:</em> Ritual Site + Void Assault für Field Accolades + World Vault Credit</li>
+      </ol>
+
+    </div>
+
+    <!-- ==========================================================
+         TAB: REFERENCE & PITFALLS
+    ========================================================== -->
+    <div class="tab-content" id="tab-reference">
+
+      <h2 id="pitfalls">Pitfalls — was deine Zeit verschwendet</h2>
+      <p>Für einen Alt, der 277 anstrebt, sind folgende Aktivitäten <strong>Zeitfresser ohne relevanten Gain</strong>:</p>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ Heroic Dungeons</div>
+        <p>Cappen bei iLvl 223. Nutzlos nach dem ersten Tag.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ M0 nach Woche 1 wiederholen</div>
+        <p>Gibt Champion 2/6 (250) — schon unter deinem Phase-2-Floor nach World Boss und Renown Unlocks.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ LFR über den ersten Clear hinaus</div>
+        <p>Gibt 233–243 Gear — schlechter als deine Campaign/Renown-Baseline. <em>Nur LFR queuen für Tier Tokens Richtung 4pc.</em></p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ Tier 4–7 Delves</div>
+        <p>Im Prinzip gleiches iLvl wie T3 für Non-Bountiful (capped). Nicht grinden — T8+ Bountiful oder skippen.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ M+ über +10</div>
+        <p>Kein besserer Gear-Reward — nur Crests, Rating, Title. Ein ganzer Abend auf einer +12 statt drei +8 = Loss.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ Myth Dawncrests vor Warband Discount ausgeben</div>
+        <p>Du zahlst doppelt. Der Discount alleine spart typischerweise <strong>200+ Myth Crests</strong> über ein volles Gear-Set.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ Low-iLvl Pieces catalysen</div>
+        <p>Matrix Catalyst behält Base iLvl — ein LFR Chest catalysen wenn du ein Heroic Non-Tier Chest in Tasche hast = Charge + Tier Slot verschwendet.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ PvP als PvE-Gear-Shortcut</div>
+        <p>Die "Conquest Gear skaliert auf 289 in Arena"-Schlagzeile ist irreführend — das ist PvP-skaliertes iLvl. Im PvE ist Honor Gear 217 und Conquest Gear 246 base. <em>Kein Shortcut.</em></p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ Catalyst Charges horten</div>
+        <p>"Für ein besseres Piece später" — du verlierst 2+ Wochen Catalyst Unbound Bonus-Drops. Sofort ausgeben.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">❌ Alte Gold-for-Gear Boost-Guides</div>
+        <p>Alles mit Weathered/Carved/Runed/Gilded Namen, Flightstones, Valorstones, Brann Bronzebeard oder Dornogal ist TWW — <strong>ignorieren</strong>.</p>
+      </div>
+
+      <h2 id="patch-1205">Patch 12.0.5 "Lingering Shadows" — morgen live (21. April)</h2>
+      <p>Morgen kommt der erste Post-Launch-Content-Patch. Für einen Alt relevant:</p>
+      <ul>
+        <li><strong>Voidforge</strong> — <span class="currency">Nebulous Voidcores</span> (guaranteed-slot drops @ ~iLvl 298); <span class="currency">Ascendant Voidcores</span> upgraden fully-upgradete Waffen/Trinkets past 6/6 bis ~298. <em>Endgame-Content post-277.</em></li>
+        <li><strong>Void Assaults</strong> — Outdoor-Events in Eversong/Zul'Aman.</li>
+        <li><strong>Ritual Sites</strong> — 1–5-Spieler skalierbare Public Quests, füllen Great Vault.</li>
+        <li><strong>Field Accolades Vendor</strong> — tauscht Accolades gegen Champion/Heroic-Level Catch-up Gear. <em>Für Alts direkt relevant.</em></li>
+      </ul>
+      <p>Ab Woche 3+ deine Weekly Routine um Ritual Sites und den Field Accolades Vendor erweitern.</p>
+
+      <h2>Was heute Abend konkret tun?</h2>
+      <div class="callout ok">
+        <div class="callout-title">Dein Fastest-Path zu 277</div>
+        <p><strong>Heute Abend:</strong> Silvermoon durchklappern — Soridormi, Liadrin, Astalor, Naleidea, World Boss, vier Renown-Gear-Unlocks → instant Jump auf ~245–250.</p>
+        <p><strong>Diese Woche:</strong> Alle 8 M0 clearen, 4 Bountiful T8 Delves, erste Nightmare Prey Weekly, LFR queuen bis 1–2 Tier Tokens für Catalyst Unbound Setup.</p>
+        <p><strong>Woche 2:</strong> Erste +10 pushen, Heroic Voidspire clearen, Beacon/Cracked Keystone für 40+ uncapped Hero/Myth Crests.</p>
+        <p><strong>Woche 3–5:</strong> Heroic Raid + Weekly +10 + Cracked Keystone + Gilded Stashes compounden, Warband Discount zum Bulk-Upgrade von Hero-Pieces auf 6/6 (276) nutzen + ein paar Myth Drops auf 3–4/6 (279–282). Myth Crests halten bis Discount aktiv. Nie Hero Crests in Crafted adden.</p>
+      </div>
+
+      <p>Das, was die meisten Returning-Alt-Spieler überrascht: Wie stark <strong>Catalyst Unbound FoS die Tier-Set-Ökonomie flipt</strong>. 4pc ist keine Late-Season-Milestone mehr — es ist eine Day-3-Priorität, die passive Charge Drops für den Rest der Season unlockt. Kombiniert mit dem Warband Discount erreicht ein kompetenter Alt heute 277 ungefähr <strong>doppelt so schnell</strong> wie derselbe Alt in TWW Season 3. Bei 4–6 fokussierten Stunden pro Woche ist es essentially garantiert dass du vor dem Season-1-Ende (Sommer 2026) deinen Main einholst.</p>
+
+      <h2 id="quellen">Quellen der Recherche</h2>
+      <p>Dieser Guide basiert auf Recherche aus Wowhead, Icy Veins, Method.gg, Warcraft Wiki, Blizzard Watch, Koroboost, Conquest Capped, Boostmatch, SkyCoach, Out of Games und offiziellen Blizzard-News aus März/April 2026. Prioritär wurden Quellen von <strong>März 2026 oder später</strong> verwendet, um TWW-Carryover-Fehlinformationen zu vermeiden.</p>
+
+      <div class="footer">
+        <p>Guide erstellt April 2026 · Midnight Patch 12.0.0 (12.0.5 morgen) · Season 1 Woche 5</p>
+        <p>Ingame-Namen und Systeme auf Englisch, da englischer Client. Fortschritt der Weekly-Checkliste wird lokal im Browser gespeichert.</p>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<!-- ==========================================================
+     JavaScript: Tabs, Checkliste, Scrollspy
+========================================================== -->
+<script>
+  // ============ TABS ============
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  function activateTab(tabId) {
+    tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+    tabContents.forEach(c => c.classList.toggle('active', c.id === 'tab-' + tabId));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+  });
+
+  // Sidebar-Links: erst Tab wechseln, dann zum Anker scrollen
+  document.querySelectorAll('.tab-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const tab = link.dataset.tab;
+      if (tab) {
+        activateTab(tab);
+        // Nach Tab-Wechsel zum Anker springen
+        setTimeout(() => {
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+        e.preventDefault();
+      }
+    });
+  });
+
+  // ============ CHECKLISTE mit localStorage ============
+  const STORAGE_KEY = 'midnight-alt-checklist-v1';
+  const WEEK_KEY = 'midnight-alt-week-timestamp';
+
+  function getCurrentWeekId() {
+    // WoW Reset Mittwoch 07:00 UTC (EU) — hier vereinfacht ISO-Wochennummer
+    const now = new Date();
+    const year = now.getUTCFullYear();
+    const start = new Date(Date.UTC(year, 0, 1));
+    const weekNum = Math.floor(((now - start) / 86400000 + start.getUTCDay() + 1) / 7);
+    return year + '-W' + weekNum;
+  }
+
+  function loadChecklist() {
+    const savedWeek = localStorage.getItem(WEEK_KEY);
+    const currentWeek = getCurrentWeekId();
+
+    // Neue Woche? → Auto-Reset
+    if (savedWeek && savedWeek !== currentWeek) {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+    localStorage.setItem(WEEK_KEY, currentWeek);
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      document.querySelectorAll('.check-item').forEach(item => {
+        const id = item.dataset.id;
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        if (saved[id]) {
+          checkbox.checked = true;
+          item.classList.add('done');
+        }
+      });
+    } catch(e) { console.warn('Checklist load failed:', e); }
+
+    updateCount();
+  }
+
+  function saveChecklist() {
+    const state = {};
+    document.querySelectorAll('.check-item').forEach(item => {
+      const id = item.dataset.id;
+      const checked = item.querySelector('input[type="checkbox"]').checked;
+      if (checked) state[id] = true;
+    });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e) { console.warn('Checklist save failed:', e); }
+  }
+
+  function updateCount() {
+    const items = document.querySelectorAll('.check-item');
+    const done = document.querySelectorAll('.check-item.done').length;
+    const totalEl = document.getElementById('check-total');
+    const countEl = document.getElementById('check-count');
+    if (totalEl) totalEl.textContent = items.length;
+    if (countEl) countEl.textContent = done;
+  }
+
+  document.querySelectorAll('.check-item').forEach(item => {
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    item.addEventListener('click', (e) => {
+      // Wenn direkt auf Checkbox geklickt: nichts tun (Browser macht das)
+      if (e.target.tagName !== 'INPUT') {
+        checkbox.checked = !checkbox.checked;
+      }
+      item.classList.toggle('done', checkbox.checked);
+      saveChecklist();
+      updateCount();
+    });
+  });
+
+  function resetChecklist() {
+    if (!confirm('Alle Haken entfernen und neue Woche starten?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.check-item').forEach(item => {
+      item.querySelector('input[type="checkbox"]').checked = false;
+      item.classList.remove('done');
+    });
+    updateCount();
+  }
+
+  // ============ SCROLLSPY: aktive Section in Sidebar markieren ============
+  const tocLinks = document.querySelectorAll('.toc a');
+  const sections = Array.from(document.querySelectorAll('h2[id], h3[id]'));
+
+  function updateActiveToc() {
+    const activeTabContent = document.querySelector('.tab-content.active');
+    if (!activeTabContent) return;
+
+    const visibleSections = sections.filter(s => activeTabContent.contains(s));
+    let current = null;
+    const scrollY = window.scrollY + 100;
+
+    for (const sec of visibleSections) {
+      if (sec.offsetTop <= scrollY) current = sec.id;
+    }
+
+    tocLinks.forEach(link => {
+      const href = link.getAttribute('href').substring(1);
+      link.classList.toggle('active', href === current);
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveToc, { passive: true });
+
+  // ============ Init ============
+  loadChecklist();
+  updateActiveToc();
+</script>
+
+</body>
+</html>
